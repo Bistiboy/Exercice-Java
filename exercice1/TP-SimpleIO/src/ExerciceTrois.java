@@ -6,23 +6,29 @@ public class ExerciceTrois {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez renseigner un répertoire : ");
-		String monChemin = sc.nextLine() ;
-		File f = new File(monChemin);
 		
 		String  listeDesFichiers[];
 		String 	listeDesExtentions[] = {".txt",".php",".html",".css",".py"} ;
 		
-		//TODO : Faire le switch pour choisir les extentions et afficher le tableau listeDesExtentions etc ..
-		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Veuillez renseigner un répertoire : ");
+		String monChemin = sc.nextLine() ;
+		File f = new File(monChemin);
 		listeDesFichiers = f.list();
 		
+		System.out.println("Et choisir une extention parmis la liste :");
+		for(int i = 0; i < listeDesExtentions.length; i++){
+			System.out.println(" - " + listeDesExtentions[i]);
+		}
+		String monExt = sc.nextLine();
+				
 		if(f.isDirectory() && f.exists()){
 			
-			for(int i = 0; i < listeDesFichiers.length ;i++ ){
-				System.out.println(listeDesFichiers[i]);
-			}	
+			for(int i = 0; i < listeDesFichiers.length; i++){
+				if(listeDesFichiers[i].endsWith(monExt)){
+					System.out.println(listeDesFichiers[i]);
+				}
+			}		
 			
 		}else if(f.isFile() && f.exists()){
 			

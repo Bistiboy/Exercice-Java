@@ -7,28 +7,32 @@ public class ExerciceQuatre {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez renseigner un répertoire : ");
-		String monChemin = sc.nextLine() ;
-		File f = new File(monChemin);
+	
 		
-		String [] listeDesFichiers;
-		
-		listeDesFichiers = f.list();
-		
-		if(f.isDirectory() && f.exists()){
+		System.out.println("Que voulez écrire dans votre fichier ?");
+		String texte = sc.nextLine() + " | ";
+
+		String adressedufichier = "test.txt";
+	
+		//on met try si jamais il y a une exception
+		try
+		{
+			FileWriter fw = new FileWriter(adressedufichier, true);
 			
-			for(int i = 0; i < listeDesFichiers.length ;i++ ){
-				System.out.println(listeDesFichiers[i]);
-			}	
+			// le BufferedWriter output auquel on donne comme argument fw
+			BufferedWriter output = new BufferedWriter(fw);			
+			//on marque dans le fichier qui sert comme tampon
+			output.write(texte);
+			output.flush();
+			//ensuite flush envoie dans le fichier			
+			output.close();
+			//et on le ferme
 			
-		}else if(f.isFile() && f.exists()){
-			
-			System.out.println("Ce n'est pas un répertoire");
-			
-		}else{
-			
-			System.out.println("Ce répertoire n'existe pas !");
-			
+			System.out.println("done");
 		}
+		catch(IOException e){
+			System.out.println("Erreur : ");
+			System.err.println(e.getMessage());
+		}		
 	}
 }
