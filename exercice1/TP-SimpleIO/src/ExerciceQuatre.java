@@ -12,7 +12,7 @@ public class ExerciceQuatre {
 		System.out.println("Que voulez écrire dans votre fichier ?");
 		String texte = sc.nextLine() + " | ";
 
-		String adressedufichier = "test.txt";
+		String adressedufichier = "Nouveau fichier.txt";
 	
 		//on met try si jamais il y a une exception
 		try
@@ -33,6 +33,10 @@ public class ExerciceQuatre {
 		catch(IOException e){
 			System.out.println("Erreur : ");
 			System.err.println(e.getMessage());
-		}		
+		}
+		finally {
+		    if(sc!=null)
+		        sc.close();
+		}
 	}
 }
