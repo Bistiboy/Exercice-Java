@@ -11,15 +11,14 @@ public class ExerciceCinq {
 		// Récuperer les adresses des fichier saisie dans la console.
 		System.out.println("Veuillez renseigner le chemin du fichier a copier : ");
 		String monFichierSource = sc.nextLine();
-		System.out.println("et celui du nouveau fichier :");
+		System.out.println("et renseigner le nom du fichier a creer :");
 		String monNouveauFichier = sc.nextLine() ;
-		
 		
 		try {
 			
 			// Création des objets InputStream et OutputStream
 			InputStream entree = new FileInputStream(monFichierSource);
-			OutputStream sortie = new FileOutputStream(monNouveauFichier);
+			OutputStream sortie = new FileOutputStream(monNouveauFichier + getExtention(monFichierSource));
 			
 			// Déclaration du buffer dans un tableau de byte
 			byte[] buffer = new byte[1024];
@@ -42,5 +41,15 @@ public class ExerciceCinq {
 		} finally {
 			sc.close();
 		}
+	}
+	
+	// Fonction pour récuperer l'extention du fichier renseigné
+	static String getExtention(String fichier){
+		String extentionFichier = "";
+		int i = fichier.lastIndexOf(".");
+		if(i != -1){
+			extentionFichier = fichier.substring(i);
+		}
+		return extentionFichier;
 	}
 }

@@ -12,9 +12,9 @@ public class ExerciceSix {
 		// Récuperer les adresses des fichier saisie dans la console.
 		System.out.println("Veuillez renseigner l'URL de l'image a copier : ");
 		String monURL = sc.nextLine();
-		System.out.println("et celui du nouveau fichier :");
+		System.out.println("et le nom du nouveau fichier :");
 		String monNouveauFichier = sc.nextLine();
-		
+
 		// Création de l'objet URLConnection
 		URLConnection urlConnection;
 		
@@ -25,7 +25,7 @@ public class ExerciceSix {
 			urlConnection = fichierUrl.openConnection();
 			// Création des objets InputStream et OutputStream
 			InputStream entree = urlConnection.getInputStream() ;
-			OutputStream sortie = new FileOutputStream(monNouveauFichier);
+			OutputStream sortie = new FileOutputStream(monNouveauFichier + getExtention(monURL));
 			
 			// Déclaration du buffer dans un tableau de byte
 			byte[] buffer = new byte[1024];
@@ -50,4 +50,15 @@ public class ExerciceSix {
 			sc.close();
 		}
 	}
+
+	// Fonction pour récuperer l'extention du fichier renseigné
+	static String getExtention(String fichier){
+		String extentionFichier = "";
+		int i = fichier.lastIndexOf(".");
+		if(i != -1){
+			extentionFichier = fichier.substring(i);
+		}
+		return extentionFichier;
+	}
+	
 }
